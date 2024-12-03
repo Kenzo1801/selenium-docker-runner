@@ -16,7 +16,13 @@ pipeline{
 
         stage('Run Test'){
             steps{
-                bat "docker-compose -f test-suites.yaml up"
+                // '--pull=always' option ensures that we are running the latest version of the docker image
+                bat "docker-compose -f test-suites.yaml up --pull=always"
+                script{
+                    if(fileExists('output/flight-reservation/testng-failed.xml') || fileExists('output/vendor-portal/testng-failed.xml')){
+                        error('failed tests found')
+                    }
+                }
             }            
         }
     }
