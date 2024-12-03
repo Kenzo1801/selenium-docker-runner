@@ -2,7 +2,7 @@ services:
   vendor-portal:
     image: dockersecondimage
     environment:
-    - BROWSER
+    - BROWSER=chrome
     - HUB_HOST=hub
     - THREAD_COUNT=3
     - TEST_SUITE=vendor-portal.xml
@@ -11,7 +11,7 @@ services:
   flight-reservation:
     image: dockersecondimage
     environment:
-    - BROWSER
+    - BROWSER=firefox
     - HUB_HOST=hub
     - THREAD_COUNT=4
     - TEST_SUITE=flight-reservation.xml
